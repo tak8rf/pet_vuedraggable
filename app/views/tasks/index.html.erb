@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div class="toppage">
+<h1 class="top">カレンダー</h1>
+<div class="col-md-8">
+<%= month_calendar events: @calendars do |date, tasks| %>
+  <%= date.day %>
+
+  <% tasks.each do |task| %>
+    <div>
+      <%= link_to task.title, task %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+<br><br>
+<div class="col-md-4">
+	<div class="schedule">今後の予定一覧</div>
+  <br>
+  
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>タイトル</th>
+      <th>日程</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.title , task %></td>
+        <td><%= task.start_time.strftime("%m-%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<%= link_to 'New Task', new_task_path %>
+<%= paginate @tasks %>
