@@ -1,0 +1,18 @@
+<%= form_with(model: @pet, local: true) do |form| %>
+  
+  
+    <div class="pet">
+      <div class="form-tag">Pet</div>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="content">
+    <div class="form-tag">詳細</div>
+    <%= form.text_area :content %>
+  </div>
+  
+    <div class="submit">
+      <%= form.submit %>
+    </div>
+  
+  <% end %>

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.where(start_time:Date.today)
+    @tasks = Task.today_tasks
     @calendars = Task.all
   end
   

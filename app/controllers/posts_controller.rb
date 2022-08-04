@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(5)
     @calendars = Post.all
@@ -13,8 +15,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(post_parameter)
-    redirect_to posts_path
+    @post=Post.new(post_params)
+    if @post.save
+      redirect_to posts_path, notice: "作成しました"
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -29,7 +35,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_parameter)
+    if @post.update(post_params)
       redirect_to posts_path, notice: "編集しました"
     else
       render 'edit'
@@ -37,14 +43,15 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:keyword])
+    @posts = Post.search(params[:keyword]).page(params[:page]).per(5)
     @keyword = params[:keyword]
+    @calendars = Post.all
     render "index"
   end
 
   private
 
-  def post_parameter
+  def post_params
     params.require(:post).permit(:title, :content, :start_time)
   end
 end

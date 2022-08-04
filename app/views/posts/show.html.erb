@@ -15,7 +15,14 @@
   <%= @post.start_time.strftime("%m-%d") %>
 </p>
 
+<p>
+  <strong>ペット:</strong>
+  <%= @post.pet.name %>
+</p>
+
+<% if user_signed_in? %>
 <%= link_to '編集', edit_post_path(@post) %>
 <%= link_to '消去',post_path(@post.id), method: :delete, data: { confirm: '本当に?' } %>
+<% end %>
 <%= link_to '戻る', posts_path %>
 </div>

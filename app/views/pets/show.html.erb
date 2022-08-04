@@ -1,0 +1,15 @@
+<h1>My pets</h1>
+<p>
+  <strong>ペット</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>詳細</strong>
+  <%= @pet.content %>
+</p>
+
+<br><br>
+<%= link_to '編集', edit_pet_path(@pet) %>
+<%= link_to '消去',pet_path(@pet.id), method: :delete, data: { confirm: '本当に?' } %>
+<%= link_to '戻る', pets_path %>

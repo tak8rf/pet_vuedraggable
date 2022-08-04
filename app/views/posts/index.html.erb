@@ -23,16 +23,13 @@
     <%= f.submit "検索" %>
   <% end %>
 </div>
-<div class="post-list">
-  <% @posts.each do |post| %>
-    <%= post.title %>
-  <% end %>
-</div>
 <table class="table">
   <thead class="thead-light">
     <tr>
       <th>タイトル</th>
       <th>日程</th>
+      <th>ペット</th>
+      
     </tr>
   </thead>
 
@@ -41,6 +38,7 @@
       <tr>
         <td><%= link_to post.title , post %></td>
         <td><%= post.start_time.strftime("%m-%d") %></td>
+        <td><%= post.pet.name %></td>
       </tr>
     <% end %>
   </tbody>
@@ -48,7 +46,7 @@
 </div>
 </div>
 <br>
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path if user_signed_in? %>
 <%= paginate @posts %>
 
 

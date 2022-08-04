@@ -3,6 +3,7 @@ class Post < ApplicationRecord
     validates :content,  presence: true
     validates :start_time, presence: true
     def self.search(keyword)
-        where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
-      end
+        where(["title like? OR content like?", "%#{keyword}%", "%#{keyword}%"])
+    end
+    belongs_to :pet
 end
