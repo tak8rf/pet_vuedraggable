@@ -1,4 +1,6 @@
+
 class TasksController < ApplicationController
+  
   def index
     @tasks = Task.today_tasks
     @calendars = Task.all
@@ -36,9 +38,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def done
+    @task = Task.find(params[:id])
+    @task.update(is_done: true ) 
+    redirect_to tasks_path
+  end
+
   private
 
   def task_parameter
-    params.require(:task).permit(:title, :content, :start_time)
+    params.require(:task).permit(:title, :content, :start_time, :is_done)
   end
 end

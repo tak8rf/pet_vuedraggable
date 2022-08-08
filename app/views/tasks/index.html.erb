@@ -6,7 +6,7 @@
 <%= month_calendar events: @calendars do |date, tasks| %>
   <%= date.day %>
 
-  <% tasks.each do |task| %>
+  <% tasks.filter{|task| !task.is_done? }.each do |task| %>
     <div>
       <%= link_to task.title, task %>
     </div>
@@ -15,27 +15,48 @@
 </div>
 <br><br>
 <div class="col-md-4">
-	<div class="schedule">今後の予定一覧</div>
+	<div class="schedule">タスク一覧</div>
   <br>
-  
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>タイトル</th>
+          <th>日程</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @tasks.filter{|task| !task.is_done? }.each do |task| %>
+        <tr>
+          <td><%= link_to task.title , task %></td>
+          <td><%= task.start_time.strftime("%m-%d") %></td>
+          <td><%= button_to 'Done', done_path(task.id), method: :post %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+<%= link_to 'New Task', new_task_path %>
+<br>
+<div class="done"%>
+<h4>完了したタスク</h4>
 <table class="table">
   <thead class="thead-light">
     <tr>
       <th>タイトル</th>
-      <th>日程</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= link_to task.title , task %></td>
-        <td><%= task.start_time.strftime("%m-%d") %></td>
-      </tr>
-    <% end %>
+  <% @tasks.filter{|task| task.is_done? }.each do |task| %>
+    <tr>
+      <td><%= link_to task.title , task %></td>
+    </tr>
+  <% end %>
   </tbody>
-</table>
+  </table>
+  <%= javascript_pack_tag 'hello_vue' %>
+  <%= stylesheet_pack_tag 'hello_vue'  %> 
 </div>
 </div>
-<br>
-<%= link_to 'New Task', new_task_path %>
+</div>
+

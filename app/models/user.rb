@@ -3,8 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :families
   has_many :groups, dependent: :destroy
-  has_many :groups_families, through: :groups, source: family
-  
+  has_many :groups_families, through: :groups, source: :family
+  # 本来はbelongs_to :familyにすべき
 end
