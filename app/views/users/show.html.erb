@@ -10,9 +10,14 @@
   <%= @user.email %>
 </p>
 
-<p>
+
+
+<% if @family.present? %>
+  <p>
   <strong>家族名</strong>
   <%= @family.name %>
-</p>
+  </p>
+<% else %>
+  <%= link_to 'New Family', new_family_path%>
+<% end %>
 
-<%= link_to 'New Family', new_family_path %>

@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :groups, dependent: :destroy
-  has_many :groups_families, through: :groups, source: :family
+  has_many :families, through: :groups, source: :family
   # 本来はbelongs_to :familyにすべき
 end

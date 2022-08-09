@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @family = current_user.groups_families.first
+    @family = current_user.families.first
   end
 
 
