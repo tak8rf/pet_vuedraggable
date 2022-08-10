@@ -16,8 +16,13 @@ class PetsController < ApplicationController
     end
 
     def create
-        Pet.create(pet_parameter)
-        redirect_to pets_path
+      @pet=Pet.new(pet_params)
+      @pet.family_id = current_user.families.first.id
+      if @pet.save
+        redirect_to pets_path, notice: "作成しました"
+      else
+        render 'new'
+      end
     end
 
     def destroy
@@ -28,7 +33,7 @@ class PetsController < ApplicationController
     
       def update
         @pet = Pet.find(params[:id])
-        if @pet.update(pet_parameter)
+        if @pet.update(pet_params)
           redirect_to pets_path, notice: "編集しました"
         else
           render 'edit'
@@ -38,7 +43,7 @@ class PetsController < ApplicationController
 
     private
 
-    def pet_parameter
+    def pet_params
       params.require(:pet).permit(:name, :content, :start_time)
     end
 end

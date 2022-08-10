@@ -16,9 +16,8 @@ def edit
 end
 
 def create
-  @family=current_user.families.build(family_params)
-  @family.user_id = current_user.id
-  if @family.save
+  current_user.families.build(family_params)
+  if current_user.save
     redirect_to user_path(current_user), notice: "作成しました"
   else
     render 'new'
