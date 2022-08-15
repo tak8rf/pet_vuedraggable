@@ -1,3 +1,3 @@
-every :minute do 
-    runner "Task.remind"
+every 1.minutes do 
+  rails runner "Task.remind"
 end

@@ -18,9 +18,10 @@ class Task < ApplicationRecord
     def self.remind
       tasks = Task.where(mailer:false)
       tasks.each do |task|
-        if task.start_time = Time.now
+        if task.start_time < Time.now
           ContactMailer.send_when_done(task.pet.family.users.first,task).deliver
           task.mailer = true
+          task.save
         end
       end
     end
