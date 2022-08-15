@@ -1,5 +1,6 @@
 
 class TasksController < ApplicationController
+  before_action :set_pets, only: [:new, :create, :edit, :update]
   
   def index
     @tasks = Task.today_tasks
@@ -15,8 +16,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    Task.create(task_parameter)
-    redirect_to tasks_path
+    @task=Task.new(task_params)
+    if @task.save
+      redirect_to tasks_path, notice: "作成しました"
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -31,7 +36,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    if @task.update(task_parameter)
+    if @task.update(task_params)
       redirect_to tasks_path, notice: "編集しました"
     else
       render 'edit'
@@ -40,13 +45,21 @@ class TasksController < ApplicationController
 
   def done
     @task = Task.find(params[:id])
-    @task.update(is_done: true ) 
-    redirect_to tasks_path
+    if @task.update(is_done: true )
+      ContactMailer.send_when_done(current_user,@task).deliver
+      redirect_to tasks_path
+    else 
+      render 'index'
+    end
   end
 
   private
 
-  def task_parameter
-    params.require(:task).permit(:title, :content, :start_time, :is_done)
+  def task_params
+    params.require(:task).permit(:title, :content, :start_time, :is_done, :pet_id)
+  end
+
+  def set_pets
+    @pets = current_family.pets.all
   end
 end

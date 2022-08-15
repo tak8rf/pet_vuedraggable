@@ -4,7 +4,11 @@
       <div class="form-tag">タイトル</div>
       <%= form.text_field :title %>
     </div>
-  
+
+    <div class="name">
+    <div class="form-tag">ペット名</div>
+    <%= form.collection_select(:pet_id,@pets,:id,:name)%>
+    </div>
   
     <div class="content">
       <div class="form-tag">内容</div>
@@ -22,3 +26,5 @@
     </div>
   
   <% end %>
+  <br>
+  <%= link_to '戻る', :back %>

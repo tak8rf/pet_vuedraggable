@@ -21,14 +21,16 @@
       <thead class="thead-light">
         <tr>
           <th>タイトル</th>
-          <th>日程</th>
+          <th>時間</th>
+          <th>ペット</th>
         </tr>
       </thead>
       <tbody>
       <% @tasks.filter{|task| !task.is_done? }.each do |task| %>
         <tr>
           <td><%= link_to task.title , task %></td>
-          <td><%= task.start_time.strftime("%m-%d") %></td>
+          <td><%= task.start_time.strftime("%H:%M") %></td>
+          <td><%= task.pet.name %></td>
           <td><%= button_to 'Done', done_path(task.id), method: :post %></td>
         </tr>
       <% end %>
@@ -44,18 +46,18 @@
   <thead class="thead-light">
     <tr>
       <th>タイトル</th>
+      <th>ペット</th>
     </tr>
   </thead>
   <tbody>
   <% @tasks.filter{|task| task.is_done? }.each do |task| %>
     <tr>
       <td><%= link_to task.title , task %></td>
+      <td><%= task.pet.name %></td>
     </tr>
   <% end %>
   </tbody>
   </table>
-  <%= javascript_pack_tag 'hello_vue' %>
-  <%= stylesheet_pack_tag 'hello_vue'  %> 
 </div>
 </div>
 </div>

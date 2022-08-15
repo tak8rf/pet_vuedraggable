@@ -6,14 +6,21 @@
 </p>
 
 <p>
+  <strong>時間</strong>
+  <%= @task.start_time.strftime("%H:%M") %>
+</p>
+
+
+<p>
+  <strong>ペット:</strong>
+  <%= @task.pet.name %>
+</p>
+
+<p>
   <strong>内容</strong>
   <%= @task.content %>
 </p>
 
-<p>
-  <strong>日時</strong>
-  <%= @task.start_time.strftime("%m-%d") %>
-</p>
 
 <%= link_to '編集', edit_task_path(@task) %>
 <%= link_to '消去',task_path(@task.id), method: :delete, data: { confirm: '本当に?' } %>

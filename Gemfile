@@ -28,6 +28,9 @@ gem 'simple_calendar', '~> 2.0'
 gem 'kaminari'
 gem 'devise'
 gem 'devise-i18n'
+gem 'rexml'
+gem 'whenever', require: false
+gem 'devise_invitable'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

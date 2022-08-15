@@ -12,4 +12,16 @@ class Task < ApplicationRecord
       end
       today_tasks
     end
+
+    belongs_to :pet
+
+    def self.remind
+      tasks = Task.where(mailer:false)
+      tasks.each do |task|
+        if task.start_time = Time.now
+          ContactMailer.send_when_done(task.pet.family.users.first,task).deliver
+          task.mailer = true
+        end
+      end
+    end
 end

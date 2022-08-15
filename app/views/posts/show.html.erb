@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>ペット:</strong>
+  <%= @post.pet.name %>
+</p>
+
+<p>
   <strong>内容</strong>
   <%= @post.content %>
 </p>
@@ -15,10 +20,6 @@
   <%= @post.start_time.strftime("%m-%d") %>
 </p>
 
-<p>
-  <strong>ペット:</strong>
-  <%= @post.pet.name %>
-</p>
 
 <% if user_signed_in? %>
 <%= link_to '編集', edit_post_path(@post) %>

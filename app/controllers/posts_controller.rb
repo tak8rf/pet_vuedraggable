@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :set_pets, only: [:new, :create, :edit, :update]
   
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(5)
@@ -51,6 +52,10 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :start_time)
+    params.require(:post).permit(:title, :content, :start_time, :pet_id)
+  end
+
+  def set_pets
+    @pets = current_family.pets.all
   end
 end
