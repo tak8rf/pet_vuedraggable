@@ -19,7 +19,7 @@ class Task < ApplicationRecord
       tasks = Task.where(mailer:false)
       tasks.each do |task|
         if task.start_time < Time.now
-          ContactMailer.send_when_done(task.pet.family.users.first,task).deliver
+          ContactMailer.send_at_the_time(task.pet.family.users,task).deliver
           task.mailer = true
           task.save
         end

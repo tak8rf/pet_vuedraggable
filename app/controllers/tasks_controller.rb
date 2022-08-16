@@ -60,6 +60,6 @@ class TasksController < ApplicationController
   end
 
   def set_pets
-    @pets = current_family.pets.all
+    @pets = current_family.pets
   end
 end
