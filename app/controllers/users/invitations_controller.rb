@@ -9,6 +9,11 @@ class Users::InvitationsController < Devise::InvitationsController
   
     def edit
       super
+      binding.pry
+    end
+
+    def show
+      super
     end
   
     def update

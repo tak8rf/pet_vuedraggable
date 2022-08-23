@@ -52,7 +52,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :start_time, :pet_id)
+    params.require(:post).permit(:title, :content, :start_time, :pet_id, :family_id)
   end
 
   def set_pets

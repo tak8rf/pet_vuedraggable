@@ -8,7 +8,9 @@
 
   <% tasks.filter{|task| !task.is_done? }.each do |task| %>
     <div>
-      <%= link_to task.title, task %>
+      <% if task.family_id == current_user.families.first.id %>
+        <%= link_to task.title, task %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
@@ -23,15 +25,19 @@
           <th>タイトル</th>
           <th>時間</th>
           <th>ペット</th>
+          <th>ユーザー</th>
         </tr>
       </thead>
       <tbody>
       <% @tasks.filter{|task| !task.is_done? }.each do |task| %>
         <tr>
-          <td><%= link_to task.title , task %></td>
-          <td><%= task.start_time.strftime("%H:%M") %></td>
-          <td><%= task.pet.name %></td>
-          <td><%= button_to 'Done', done_path(task.id), method: :post %></td>
+          <% if task.family_id == current_user.families.first.id %>
+            <td><%= link_to task.title , task %></td>
+            <td><%= task.start_time.strftime("%H:%M") %></td>
+            <td><%= task.pet.name %></td>
+            <td><%= current_user.name%></td>
+            <td><%= button_to 'Done', done_path(task.id), method: :post %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

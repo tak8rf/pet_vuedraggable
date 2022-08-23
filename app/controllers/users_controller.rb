@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     @family = current_user.families.first
   end
 
-
   private
 
   def user_params

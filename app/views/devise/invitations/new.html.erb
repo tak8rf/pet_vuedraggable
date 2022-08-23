@@ -7,6 +7,8 @@
     <div class="field">
       <%= f.label field %><br />
       <%= f.text_field field %>
+      <%= f.hidden_field :family_id, :value => current_user.families.first.id %>
+      <%= f.hidden_field :name, :value => "motoya" %>
     </div>
   <% end -%>
 

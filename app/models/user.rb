@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :groups, dependent: :destroy
   has_many :families, through: :groups, source: :family
   # 本来はbelongs_to :familyにすべき
+  attr_accessor :family_id
 end

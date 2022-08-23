@@ -10,7 +10,9 @@
 <tbody>
   <% @pets.each do |pet| %>
     <tr>
+    <% if pet.family.id == current_user.families.first.id %>
       <td><%= link_to pet.name, pet %></td>
+    <% end %>
   <% end %>
 </tbody>
 </table>

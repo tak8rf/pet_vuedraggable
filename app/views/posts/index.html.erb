@@ -8,7 +8,9 @@
 
   <% posts.each do |post| %>
     <div>
-      <%= link_to post.title, post %>
+      <% if post.family_id == current_user.families.first.id %>
+        <%= link_to post.title, post %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
@@ -29,6 +31,7 @@
       <th>タイトル</th>
       <th>日程</th>
       <th>ペット</th>
+      <th>ユーザー</th>
       
     </tr>
   </thead>
@@ -36,9 +39,12 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= link_to post.title , post %></td>
-        <td><%= post.start_time.strftime("%m-%d") %></td>
-        <td><%= post.pet.name %></td>
+        <% if post.family_id == current_user.families.first.id %>
+          <td><%= link_to post.title , post %></td>
+          <td><%= post.start_time.strftime("%m-%d") %></td>
+          <td><%= post.pet.name %></td>
+          <td><%= current_user.name %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

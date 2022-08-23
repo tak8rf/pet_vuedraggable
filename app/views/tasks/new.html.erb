@@ -6,9 +6,14 @@
     </div>
 
     <div class="name">
-    <div class="form-tag">ペット名</div>
-    <%= form.collection_select(:pet_id,@pets,:id,:name)%>
-  </div>
+      <div class="form-tag">ペット名</div>
+      <%= form.collection_select(:pet_id,@pets,:id,:name)%>
+    </div>
+
+    <div class="user_name">
+      <div class="form-tag">ユーザー名</div>
+      <%= form.hidden_field :user_id, :value => "current_user.id" %>
+    </div>
   
     <div class="content">
       <div class="form-tag">内容</div>
@@ -19,6 +24,8 @@
       <div class="form-tag">時間</div>
       <%= form.datetime_select :start_time %>
     </div>
+
+    <%= form.hidden_field :family_id, :value => current_user.families.first.id %>
   
    <div class="submit">
       <%= form.submit %>
