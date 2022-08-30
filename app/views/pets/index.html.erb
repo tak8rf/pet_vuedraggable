@@ -1,22 +1,23 @@
-
-<table>
-<thead>
-  <tr>
-    <th>Pet</th>
-    <th colspan="3"></th>
-  </tr>
-</thead>
-
-<tbody>
-  <% @pets.each do |pet| %>
-    <tr>
-    <% if pet.family.id == current_user.families.first.id %>
-      <td><%= link_to pet.name, pet %></td>
-    <% end %>
-  <% end %>
-</tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Pet', new_pet_path %>
+<div class="col-md-6">
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Pet</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pets.each do |pet| %>
+        <tr>
+          <% if pet.family.id == current_user.families.first.id %>
+            <td><%= image_tag pet.image.url, class:'rounded-circle'%></td>
+            <td><%= link_to pet.name, pet %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Pet', new_pet_path %>
+</div>

@@ -1,11 +1,31 @@
 <h1>My pets</h1>
+
+<p>
+  <strong>Image:</strong><br>
+  <%= image_tag @pet.image.url %>
+</p>
+
+<p>
+  <strong>誕生日</strong>
+  <%= @pet.birthday.strftime("%y-%m-%d") %>
+</p>
+
 <p>
   <strong>ペット</strong>
   <%= @pet.name %>
 </p>
+<p>
+  <strong>体長</strong>
+  <%= @pet.lenght %>
+</p>
 
 <p>
-  <strong>詳細</strong>
+  <strong>体重</strong>
+  <%= @pet.weight %>
+</p>
+
+<p>
+  <strong>備考</strong>
   <%= @pet.content %>
 </p>
 

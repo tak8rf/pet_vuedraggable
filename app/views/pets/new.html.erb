@@ -5,12 +5,32 @@
       <%= form.text_field :name %>
     </div>
 
+    <div class="title">
+      <div class="form-tag">誕生日</div>
+      <%= form.date_field :birthday %>
+    </div>
+
+    <div class="lenght">
+      <div class="form-tag">体長</div>
+      <%= form.text_field :lenght %>
+    </div>
+
+    <div class="weight">
+      <div class="form-tag">体重</div>
+      <%= form.text_field :weight %>
+    </div>
+
     <div class="content">
-    <div class="form-tag">詳細</div>
-    <%= form.text_area :content %>
-  </div>
-  
-   <div class="submit">
+      <div class="form-tag">備考</div>
+      <%= form.text_area :content %>
+    </div>
+
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+    </div>
+<br>
+    <div class="submit">
       <%= form.submit %>
-   </div>
+    </div>
 <% end %>
