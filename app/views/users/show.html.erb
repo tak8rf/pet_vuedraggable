@@ -1,0 +1,21 @@
+<div class="col-4">
+  <h1>Users</h1>
+  <br>
+  <p>
+    <strong>ユーザー名</strong>
+    <%= @user.name %>
+    </p>
+  <p>
+    <strong>e-mail</strong>
+    <%= @user.email %>
+  </p>
+  <% if @family.present? %>
+    <p>
+    <strong>家族名</strong>
+    <%= @family.name %>
+    </p>
+  <% else %>
+    <%= link_to 'New Family', new_family_path%>
+  <% end %>
+</div>
+

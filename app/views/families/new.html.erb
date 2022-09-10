@@ -1,0 +1,14 @@
+<h1>User<h1>
+<hr />
+<%= form_with(model: @family, local: true) do |form| %>
+
+    <div class="title">
+      <div class="form-tag">家族名</div>
+      <%= form.text_field :name %>
+    </div>
+
+  
+   <div class="submit">
+      <%= form.submit %>
+   </div>
+<% end %>
